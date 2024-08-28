@@ -1,4 +1,4 @@
-from avdent2022.lib import list_to_tuples
+from advent2022.lib import list_to_tuples
 
 
 def parse_file(filename):

@@ -1,4 +1,4 @@
-from avdent2022.lib import invert_dict
+from advent2022.lib import invert_dict
 
 
 def parse_file(filename):
