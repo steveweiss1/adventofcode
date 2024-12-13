@@ -32,13 +32,10 @@ class Node:
         A = np.array([[self.a[0], self.b[0]], [self.a[1], self.b[1]]])
         B = np.array([oprize[0], oprize[1]])
         solution = np.linalg.solve(A, B)
-        if np.all(np.isclose(solution, np.round(solution), 1e-15)):
+        if np.all(np.isclose(solution, np.round(solution), 0, 0.0001)):
             # Convert to integers if close enough
             solution = np.round(solution).astype(int)
-            actual = (int(self.a[0] * solution[0] + self.b[0]*solution[1]),
-                      int(self.a[1] * solution[0] + self.b[1]*solution[1]))
-            #if actual != oprize:
-            #    raise Exception(f"expected {oprize} received {actual}")
+
             return 3*solution[0] + solution[1]
         return 0
 
