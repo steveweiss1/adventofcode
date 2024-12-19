@@ -53,7 +53,6 @@ def parse_file(filename):
         prize = (0, 0)
         nodes = []
         for line in file:
-            # Strip any leading/trailing whitespace (including newlines)
             line = line.strip()
             if line:
                 matches = tuple([int(x) for x in re.findall(r'(\d+)', line)])
