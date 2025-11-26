@@ -1,4 +1,5 @@
 from collections import defaultdict
+import heapq
 
 
 def invert_dict(d):
@@ -49,3 +50,49 @@ def grid_to_default_dict(grid, default):
 
 def flatten(l):
     return sum(l, [])
+
+def flatten_list(nested_list):
+    return [item for sublist in nested_list for item in sublist]
+
+
+def dijkstra(graph, start):
+    """
+    Compute the shortest paths from the start node to all other nodes in the graph.
+    
+    Parameters:
+        graph (dict): adjacency list representation, e.g.
+                      {
+                          'A': {'B': 1, 'C': 4},
+                          'B': {'A': 1, 'C': 2, 'D': 5},
+                          'C': {'A': 4, 'B': 2, 'D': 1},
+                          'D': {'B': 5, 'C': 1}
+                      }
+        start: starting node label
+        
+    Returns:
+        distances (dict): shortest known distance from start to each node
+        previous (dict): previous node on the shortest path
+    """
+    # Initialize distances and previous nodes
+    distances = {node: float('inf') for node in graph}
+    previous = {node: None for node in graph}
+    distances[start] = 0
+
+    # Priority queue: (distance, node)
+    pq = [(0, start)]
+
+    while pq:
+        current_dist, current_node = heapq.heappop(pq)
+
+        # Skip if we already found a better path
+        if current_dist > distances[current_node]:
+            continue
+
+        for neighbor, weight in graph[current_node].items():
+            distance = current_dist + weight
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                previous[neighbor] = current_node
+                heapq.heappush(pq, (distance, neighbor))
+
+    return distances, previous
