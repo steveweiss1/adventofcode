@@ -119,3 +119,17 @@ def parse_grid_with_start(filename):
                     start = (r, c)
                     break
         return grid, start
+
+# L25
+def parse_pairs(filename):
+    parsed_data = []
+
+    with open(filename, 'r') as file:
+        for line in file:
+            line = line.strip()
+            if line:
+                direction = line[0]
+                num = int(line[1:])
+                parsed_data.append((direction, num))
+
+    return parsed_data
