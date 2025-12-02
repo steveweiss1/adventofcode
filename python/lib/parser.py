@@ -1,5 +1,4 @@
 import re
-from collections import namedtuple
 
 # 1 2
 def parse_int_pairs(filename):
@@ -133,3 +132,10 @@ def parse_pairs(filename):
                 parsed_data.append((direction, num))
 
     return parsed_data
+
+# 1-2,3-4
+def parse_ranges_one_line(filename):
+    with open(filename, 'r') as file:
+        line = file.readline().strip()
+        ranges = line.split(',')
+        return [tuple(map(int, r.split('-'))) for r in ranges]

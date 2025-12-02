@@ -1,4 +1,3 @@
-
 def process(pairs, part2=False):
     position = 50
     total_zero = 0
@@ -36,8 +35,8 @@ def parse_pairs(filename):
 
 
 input_data = parse_pairs("q1.txt")
-#Part 1
+# Part 1
 print(process(input_data))
 
-#Part 2
+# Part 2
 print(process(input_data, True))
