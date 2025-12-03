@@ -29,13 +29,25 @@ def process_bank_recurse(bank, n=12):
     cache[key] = bsf
     return bsf
 
+def process_bank_itr(bank, n=12):
+    total = ''
+    for i in range(n - 1, -1, -1):
+        end = len(bank) - i
+        max_idx, max_val = max(enumerate(bank[:end]), key=lambda x: x[1])
+        # print(f"{i} {end} {max_idx} {max_val}")
+        # print(bank)
+        total += max_val
+        bank = bank[max_idx+1:]
+    return int(total)
+
+
 
 def part1(banks):
     return sum(map(process_bank, banks))
 
 
 def part2(banks):
-    return sum(map(process_bank_recurse, banks))
+    return sum(map(process_bank_itr, banks))
 
 
 def parse(filename):
@@ -47,3 +59,6 @@ input_data = parse("q3.txt")
 # print(input_data)
 print(part1(input_data))
 print(part2(input_data))
+
+# 17408
+# 172740584266849
