@@ -60,5 +60,3 @@ input_data = parse("q3.txt")
 print(part1(input_data))
 print(part2(input_data))
 
-# 17408
-# 172740584266849
