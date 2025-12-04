@@ -21,17 +21,14 @@ def grid_to_set(grid):
 def part2(grid):
     paper_spots = grid_to_set(grid)
     total = 0
-    deleted = True
-    while deleted:
-        deleted = False
+    to_delete = None
+    while to_delete is None or len(to_delete) > 0:
         to_delete = set()
         for r,c in paper_spots:
             if sum((a+r, b+c) in paper_spots for a, b in adjacents) < 4:
-                total += 1
-                deleted = True
                 to_delete.add((r,c))
-        for spot in to_delete:
-            paper_spots.remove(spot)
+        total += len(to_delete)
+        paper_spots -= to_delete
     return total
 
 def parse_file(filename):
