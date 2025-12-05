@@ -2,6 +2,7 @@ from collections import defaultdict
 import heapq
 
 adjacents = [(0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1)]
+dirs = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
 def invert_dict(d):
     inverted = {}
